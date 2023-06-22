@@ -30,7 +30,7 @@ export default function CreateTrade() {
         console.log("Geolocation not supported");
         }
 
-        async function success(position: { coords: { latitude: any; longitude: any } }) {
+        async function success(position) {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
             const tradeRef = firestore.collection('books')

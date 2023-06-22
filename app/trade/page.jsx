@@ -10,18 +10,14 @@ import { useRouter } from 'next/navigation';
 import Axios from 'axios';
 import { useAuth } from '@clerk/nextjs';
 
-interface Coordinates {
-  latitude: number;
-  longitude: number;
-}
 
 const MAX_DISTANCE = 80; // Replace with your desired maximum distance
 
 export default function Home() {
   const [search, setSearch] = useState('');
-  const [books, setBooks] = useState<any[]>([]);
+  const [books, setBooks] = useState([]);
   const [userID, setUserID] = useState('');
-  const [tradersNames, setTradersNames] = useState<string[]>([]);
+  const [tradersNames, setTradersNames] = useState([]);
   const [loading, setLoading] = useState(true);
     const { push } = useRouter();
 
@@ -35,7 +31,7 @@ export default function Home() {
         console.log('Geolocation not supported');
       }
 
-      async function success(position: GeolocationPosition) {
+      async function success(position) {
         const { latitude, longitude } = position.coords;
             const {data} = await Axios.get(`${process.env.BASE_URL}/trade/api/get-user-id`);
           const userIDLocal = data.userId;
@@ -49,7 +45,7 @@ export default function Home() {
         }
 
         const snapshot = await query.get();
-        let booksNearUser: any[] = [];
+        let booksNearUser = [];
 
         snapshot.forEach((doc) => {
           const { geopoint } = doc.data();
@@ -76,7 +72,7 @@ export default function Home() {
         setLoading(false);
       }
 
-      function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+      function calculateDistance(lat1, lon1, lat2, lon2) {
         return Math.sqrt((lat2 - lat1) ** 2 + (lon2 - lon1) ** 2);
       }
 
@@ -88,9 +84,9 @@ export default function Home() {
     fetchAllBooksNearUser();
   }, [search]);
 
-  const getTradersNames = async (traderIds: string[]) => {
+  const getTradersNames = async (traderIds) => {
     console.log(traderIds);
-    const tradersNames: string[] = [];
+    const tradersNames = [];
     for (let i = 0; i < traderIds.length; i++) {
       console.log(traderIds[i]);
       const jwt = await getToken();

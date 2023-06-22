@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/trade/api/get-user-by-id/route.js", "app/trade/api/get-user-id/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/trade/api/get-user-by-id/route.js", "app/trade/api/get-user-id/route.js", "app/trade/message-hub/page.jsx", "app/trade/page.jsx", "app/trade/message-hub/conversation/[partnerid]/page.jsx", "app/trade/create/page.jsx"],
   "exclude": ["node_modules"]
 }
