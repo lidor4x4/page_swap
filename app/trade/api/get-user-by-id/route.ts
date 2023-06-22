@@ -8,7 +8,7 @@ export async function GET(request: Request): Promise<NextResponse> {
         const userId = searchParams.get('userId'); // Get the value of the userId parameter
         const token = searchParams.get('token'); // Get the value of the token parameter
 
-        const clerk: Clerk = new Clerk({
+        const clerk = new Clerk({
             secretKey: process.env.CLERK_SECRET_KEY!,
             jwtKey: `Bearer ${token}`,
         });
